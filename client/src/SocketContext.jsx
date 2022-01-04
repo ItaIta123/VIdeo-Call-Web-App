@@ -11,10 +11,11 @@ const socket = io("https://localhost:5001");
 
 const ContextProvider = ({ children }) => {
   const [myId, setMyId] = useState("");
+  const [name, setName] = useState("");
   const [stream, setStream] = useState(null);
-  const [callData, setCallData] = userState({});
-  const [callAccepted, setCallAccepted] = userState(false);
-  const [callEnded, setCallEnded] = userState(false);
+  const [callData, setCallData] = useState({});
+  const [callAccepted, setCallAccepted] = useState(false);
+  const [callEnded, setCallEnded] = useState(false);
 
   // current user video stream
   const myVideo = useRef();
@@ -42,10 +43,7 @@ const ContextProvider = ({ children }) => {
     socket.on("callUser", ({ from, name: callerName, signal }) => {
       setCallData({ isReceivedCall: true, from, name: callerName, signal });
     });
-
-    console.log(call)
   }, []);
-
 
   // receiving a call handler
   const answerCall = () => {
@@ -55,7 +53,7 @@ const ContextProvider = ({ children }) => {
 
     // listening to a signal event from the other user
     peer.on("signal", (data) => {
-      socket.emit("answerCall", { signal: data, to: call.from });
+      socket.emit("answerCall", { signal: data, to: callData.from });
     });
 
     // set the other user current stream
@@ -63,18 +61,72 @@ const ContextProvider = ({ children }) => {
       userVideo.current.srcObject = currentStream;
     });
 
-    // signaling (like "emit" for socket.io) to call another user
-    peer.signal(call.signal)
-
+    // signaling (like "emit" for socket.io) the
+    peer.signal(callData.signal);
 
     connectionRef.current = peer;
   };
 
   // initiating a call handler
-  const callUser = () => {
+  const callUser = (id) => {
     const peer = new Peer({ initiator: true, trickle: false, stream });
 
+    // listening to a signal event from the other user
+    peer.on("signal", (data) => {
+      socket.emit("callUser", {
+        userToCall: id,
+        signalData: data,
+        from: myId,
+        name,
+      });
+    });
+
+    // set the other user current stream
+    peer.on("stream", (currentStream) => {
+      userVideo.current.srcObject = currentStream;
+    });
+
+    socket.on("callAccepted", (signal) => {
+      setCallAccepted(true);
+
+      peer.signal(signal);
+    });
+
+    connectionRef.current = peer;
   };
 
-  const leaveCall = () => {};
+  const leaveCall = () => {
+    setCallEnded(true);
+
+    // stop receiving input from user audion and video.
+    connectionRef.current.destroy();
+
+    // fixed a bug of not being able to call a user immediately after hagging up a call
+    // this will re-populate the myId variable and fix the problem
+    window.location.reload();
+  };
+
+  return (
+    <SocketContext.Provider
+      value={{
+        callData,
+        callAccepted,
+        myVideo,
+        userVideo,
+        stream,
+        name,
+        setName,
+        callEnded,
+        myId,
+        callUser,
+        leaveCall,
+        answerCall,
+      }}
+    >
+      {children}
+    </SocketContext.Provider>
+  );
 };
+
+
+export {ContextProvider, SocketContext}

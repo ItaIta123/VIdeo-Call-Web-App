@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 // styles like in React Native
-const useStyles = makeStyles((theme) => ({
+const AppStyles = makeStyles((theme) => ({
   appBar: {
     borderRadius: 15,
     margin: "30px 100px",
@@ -27,4 +27,57 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default useStyles;
+const VideoPlayerStyles = makeStyles((theme) => ({
+  video: {
+    width: '550px',
+    [theme.breakpoints.down('xs')]: {
+      width: '300px',
+    },
+  },
+  gridContainer: {
+    justifyContent: 'center',
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column',
+    },
+  },
+  paper: {
+    padding: '10px',
+    border: '2px solid black',
+    margin: '10px',
+  },
+}));
+
+const OptionsStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  gridContainer: {
+    width: '100%',
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column',
+    },
+  },
+  container: {
+    width: '600px',
+    margin: '35px 0',
+    padding: 0,
+    [theme.breakpoints.down('xs')]: {
+      width: '80%',
+    },
+  },
+  margin: {
+    marginTop: 25,
+  },
+  padding: {
+    padding: 20,
+  },
+  paper: {
+    padding: '10px 20px',
+    border: '2px solid black',
+  },
+ }));
+
+
+
+export {AppStyles, VideoPlayerStyles, OptionsStyles};

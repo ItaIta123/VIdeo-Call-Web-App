@@ -45,10 +45,11 @@ const ContextProvider = ({ children }) => {
     });
   }, []);
 
-  // receiving a call handler
+  // answering a call handler
   const answerCall = () => {
     setCallAccepted(true);
 
+    // setting up a Peer object (for webRTC usage)
     const peer = new Peer({ initiator: false, trickle: false, stream });
 
     // listening to a signal event from the other user
@@ -61,7 +62,8 @@ const ContextProvider = ({ children }) => {
       userVideo.current.srcObject = currentStream;
     });
 
-    // signaling (like "emit" for socket.io) the
+    // signaling (like "emit" for socket.io) 
+    // peer.signal(data) - "Call this method whenever the remote peer emits a peer.on('signal') event."
     peer.signal(callData.signal);
 
     connectionRef.current = peer;
@@ -106,6 +108,7 @@ const ContextProvider = ({ children }) => {
     window.location.reload();
   };
 
+  // export CONTEXT
   return (
     <SocketContext.Provider
       value={{

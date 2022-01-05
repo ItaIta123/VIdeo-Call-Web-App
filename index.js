@@ -1,5 +1,6 @@
 // server file
 
+// creating and loading server
 const app = require("express")();
 const server = require("http").createServer(app);
 

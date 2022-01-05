@@ -59,7 +59,7 @@ const OptionsStyles = makeStyles((theme) => ({
     },
   },
   container: {
-    width: '600px',
+    width: '590px',
     margin: '35px 0',
     padding: 0,
     [theme.breakpoints.down('xs')]: {
@@ -67,7 +67,7 @@ const OptionsStyles = makeStyles((theme) => ({
     },
   },
   margin: {
-    marginTop: 25,
+    marginTop: 20,
   },
   padding: {
     padding: 20,

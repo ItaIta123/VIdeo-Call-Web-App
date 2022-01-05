@@ -22,7 +22,7 @@ const Options = ({ children }) => {
   return (
     <Container className={classes.container}>
       <Paper elevation={10} className={classes.paper}>
-        <from className={classes.root} noValidate autoComplete="off">
+        <form className={classes.root} noValidate autoComplete="off">
           <Grid container className={classes.gridContainer}>
             <Grid item xs={12} md={6} className={classes.padding}>
               <Typography gutterBottom variant="h6">
@@ -34,6 +34,7 @@ const Options = ({ children }) => {
                 onChange={(e) => setName(e.target.value)}
                 fullWidth
               />
+              {console.log(myId)}
               <CopyToClipboard text={myId} className={classes.margin}>
                 <Button
                   variant="contained"
@@ -81,7 +82,7 @@ const Options = ({ children }) => {
               )}
             </Grid>
           </Grid>
-        </from>
+        </form>
         {children}
       </Paper>
     </Container>

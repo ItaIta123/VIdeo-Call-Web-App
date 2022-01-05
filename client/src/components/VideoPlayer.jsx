@@ -47,7 +47,7 @@ const VideoPlayer = () => {
             <video
               playsInline
               ref={userVideo}
-              autoplay
+              autoPlay
               className={classes.video}
             />
           </Grid>

@@ -6,7 +6,7 @@ const server = require("http").createServer(app);
 
 const io = require("socket.io")(server, {
   cors: "*",
-  methods: ["GET", "POST"], // enable only get and post from different origin
+  // methods: ["GET", "POST"], // enable only get and post from different origin
 });
 
 // socket

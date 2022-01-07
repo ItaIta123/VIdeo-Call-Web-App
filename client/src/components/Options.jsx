@@ -9,8 +9,9 @@ import {
 } from "@material-ui/core";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Assignment, Phone, PhoneDisabled } from "@material-ui/icons";
-import { SocketContext } from "../SocketContext";
+import toast, { Toaster } from "react-hot-toast";
 
+import { SocketContext } from "../SocketContext";
 import { OptionsStyles } from "./styles";
 
 const Options = ({ children }) => {
@@ -18,6 +19,17 @@ const Options = ({ children }) => {
     useContext(SocketContext);
   const [idToCall, setIdToCall] = useState("");
   const classes = OptionsStyles();
+
+  const copySuccessNotification = () =>
+    toast.success("Copied successfully! now share it with your friend.", {
+      duration: 4000,
+    });
+
+  const callingNotification = () => {
+    toast.loading("Calling your friend...", {
+      duration: 6000,
+    });
+  };
 
   return (
     <Container className={classes.container}>
@@ -34,16 +46,17 @@ const Options = ({ children }) => {
                 onChange={(e) => setName(e.target.value)}
                 fullWidth
               />
-              {console.log(myId)}
               <CopyToClipboard text={myId} className={classes.margin}>
                 <Button
                   variant="contained"
                   color="primary"
                   fullWidth
                   startIcon={<Assignment fontSize="large" />}
+                  onClick={() => copySuccessNotification()}
                 >
                   Copy Your ID
                 </Button>
+                {/* <Toaster /> */}
               </CopyToClipboard>
             </Grid>
 
@@ -74,7 +87,7 @@ const Options = ({ children }) => {
                   color="primary"
                   startIcon={<Phone fontSize="large" />}
                   fullWidth
-                  onClick={() => callUser(idToCall)} // fire the callUSer function only when clicking the button
+                  onClick={() => (callUser(idToCall), callingNotification())} // fire the callUSer function only when clicking the button
                   className={classes.margin}
                 >
                   Call
@@ -85,6 +98,23 @@ const Options = ({ children }) => {
         </form>
         {children}
       </Paper>
+      <Toaster
+        toastOptions={{
+          loading: {
+            style: {
+              background: "#3f51b5",
+              fontSize: "large",
+              color: "white",
+            },
+          },
+          success: {
+            style: {
+              background: "#8DEF7F",
+              fontSize: "large",
+            },
+          },
+        }}
+      />
     </Container>
   );
 };

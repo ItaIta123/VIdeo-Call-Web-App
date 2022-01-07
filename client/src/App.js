@@ -11,15 +11,16 @@ const App = () => {
   return (
     <div className={classes.wrapper}>
       <AppBar className={classes.appBar} position="static" color="inherit">
-        <Typography variant="h2" align="center">
-          Video Chat
+        <Typography variant="h5" align="center">
+          My Video Chat Web App
         </Typography>
       </AppBar>
-      Video Chat App
       <VideoPlayer />
+      <div style={{width: 627}}>
       <Options>
         <Notifications />
-      </Options>
+        </Options>
+        </div>
     </div>
   );
 };

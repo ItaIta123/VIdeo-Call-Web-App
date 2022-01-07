@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const AppStyles = makeStyles((theme) => ({
   appBar: {
     borderRadius: 15,
-    margin: "30px 100px",
+    margin: "5px 100px",
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
@@ -40,10 +40,17 @@ const VideoPlayerStyles = makeStyles((theme) => ({
       flexDirection: 'column',
     },
   },
+
+  grid: {
+    display :"flex",
+    alignItems: "center",
+    flexDirection: 'column',
+  
+  },
   paper: {
     padding: '10px',
     border: '2px solid black',
-    margin: '10px',
+    margin: '3px',
   },
 }));
 
@@ -51,6 +58,7 @@ const OptionsStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
+    // justifyContent: 'center'
   },
   gridContainer: {
     width: '100%',
@@ -60,21 +68,23 @@ const OptionsStyles = makeStyles((theme) => ({
   },
   container: {
     width: '590px',
-    margin: '35px 0',
+    margin: '35px',
     padding: 0,
     [theme.breakpoints.down('xs')]: {
       width: '80%',
     },
   },
   margin: {
-    marginTop: 20,
+    marginTop: 15,
   },
   padding: {
-    padding: 20,
+    padding: 10,
   },
   paper: {
     padding: '10px 20px',
     border: '2px solid black',
+    display: 'flex',
+    flexDirection : 'row'
   },
  }));
 

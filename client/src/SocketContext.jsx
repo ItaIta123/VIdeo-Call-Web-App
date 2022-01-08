@@ -7,7 +7,7 @@ import Peer from "simple-peer";
 const SocketContext = createContext();
 
 // getting client socket side from the backend socket server
-const socket = io("http://localhost:5001/");
+const socket = io("https://react-video-web-app.herokuapp.com/");
 
 const ContextProvider = ({ children }) => {
   const [myId, setMyId] = useState("");

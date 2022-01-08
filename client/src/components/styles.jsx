@@ -29,49 +29,48 @@ const AppStyles = makeStyles((theme) => ({
 
 const VideoPlayerStyles = makeStyles((theme) => ({
   video: {
-    width: '550px',
-    [theme.breakpoints.down('xs')]: {
-      width: '300px',
+    width: "550px",
+    [theme.breakpoints.down("xs")]: {
+      width: "300px",
     },
   },
   gridContainer: {
-    justifyContent: 'center',
-    [theme.breakpoints.down('xs')]: {
-      flexDirection: 'column',
+    justifyContent: "center",
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "column",
     },
   },
 
   grid: {
-    display :"flex",
+    display: "flex",
     alignItems: "center",
-    flexDirection: 'column',
-  
+    flexDirection: "column",
   },
   paper: {
-    padding: '10px',
-    border: '2px solid black',
-    margin: '3px',
+    padding: "10px",
+    border: "2px solid black",
+    margin: "3px",
   },
 }));
 
 const OptionsStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
     // justifyContent: 'center'
   },
   gridContainer: {
-    width: '100%',
-    [theme.breakpoints.down('xs')]: {
-      flexDirection: 'column',
+    width: "100%",
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "column",
     },
   },
   container: {
-    width: '590px',
-    margin: '35px',
+    width: "590px",
+    margin: "35px",
     padding: 0,
-    [theme.breakpoints.down('xs')]: {
-      width: '80%',
+    [theme.breakpoints.down("xs")]: {
+      width: "80%",
     },
   },
   margin: {
@@ -80,14 +79,15 @@ const OptionsStyles = makeStyles((theme) => ({
   padding: {
     padding: 10,
   },
+  
   paper: {
-    padding: '10px 20px',
-    border: '2px solid black',
-    display: 'flex',
-    flexDirection : 'row'
+    padding: "10px 20px",
+    border: "2px solid black",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center"
   },
- }));
+}));
 
-
-
-export {AppStyles, VideoPlayerStyles, OptionsStyles};
+export { AppStyles, VideoPlayerStyles, OptionsStyles };

@@ -1,23 +1,35 @@
 import React, { useContext } from "react";
 import { Button } from "@material-ui/core";
 import toast, { Toaster } from "react-hot-toast";
+import {
+  TextField,
+  Grid,
+  Typography,
+  Paper,
+  Container,
+} from "@material-ui/core";
 
+
+import { OptionsStyles } from "./styles";
 import { SocketContext } from "../SocketContext";
 
 
 const Notifications = () => {
+  const classes = OptionsStyles();
   const { answerCall, callData, callAccepted } = useContext(SocketContext);
   return (
     <>
       {callData.isReceivedCall ? copySuccessNotification(callData) : null}
       {callData.isReceivedCall && !callAccepted && (
-        <div styles={{ display: "flex", justifyContent: "center" }}>
-          <h1>{callData.name} is calling: </h1>
-          <Button variant="contained" color="primary" onClick={answerCall}>
+        <Grid>
+        <Typography gutterBottom variant="h6">
+        {callData.name} is calling: 
+        </Typography>
+          <Button variant="contained" color="secondary" onClick={answerCall}>
             Answer Call
           </Button>
           <Toaster />
-        </div>
+        </Grid >
       )}
     </>
   );

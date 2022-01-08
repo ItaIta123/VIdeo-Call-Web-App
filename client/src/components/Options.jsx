@@ -41,7 +41,7 @@ const Options = ({ children }) => {
                 Account Info
               </Typography>
               <TextField
-                label="Name"
+                label="Your Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 fullWidth
@@ -56,7 +56,6 @@ const Options = ({ children }) => {
                 >
                   Copy Your ID
                 </Button>
-                {/* <Toaster /> */}
               </CopyToClipboard>
             </Grid>
 
